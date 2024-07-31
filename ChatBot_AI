@@ -1,0 +1,51 @@
+import datetime
+
+def wishme():
+    hour = int(datetime.datetime.now().hour)
+    if hour > 0 and hour < 12:
+        return "Good Morning!"
+    elif hour >= 12 and hour < 15:
+        return "Good Afternoon!"
+    else:
+        return "Good Evening!"
+
+def movie_recommendations(genre):
+    movie_dict = {
+        "action": ["Mad Max: Fury Road", "John Wick", "Die Hard","Shang-Chi and the Legend of the Ten Rings","The Fall Guy"],
+        "comedy": ["Superbad", "Step Brothers", "The Hangover","Ted","The Family Plan"],
+        "drama": ["The Shawshank Redemption", "Forrest Gump", "The Godfather"],
+        "sci-fi": ["Inception", "The Matrix", "Interstellar"],
+        "horror": ["The Conjuring", "The Nun", "Smile"]
+    }
+    return movie_dict.get(genre.lower(), "Sorry, I don't have recommendations for that genre.")
+
+while True:
+    print("USER: ", end="")
+    query = input().lower()
+    print("BOT: ", end="")
+    
+    if "hello" in query or "hi" in query:
+        print(wishme())
+        print("How can I help you today? I can recommend movies based on genres.")
+    
+    elif "your name" in query or "who are you" in query:
+        print("Hi, I am your MovieBot 😊")
+        print("I can help you find movies to watch.")
+    
+    elif "recommend" in query:
+        print("Sure, please tell me which genre you are interested in: action, comedy, drama, sci-fi, or horror?")
+        print("USER: ", end="")
+        genre = input().lower()
+        recommendations = movie_recommendations(genre)
+        print("BOT: Here are some recommendations for you:", recommendations)
+    
+    elif "time now" in query:
+        current_time = datetime.datetime.now().strftime("%H:%M:%S")
+        print(f"The time is: {current_time}")
+    
+    elif "bye" in query:
+        print("Ok, see you soon! Enjoy your movies!")
+        break
+    
+    else:
+        print("I couldn't understand. Can you please rephrase?")
